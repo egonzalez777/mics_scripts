@@ -1,4 +1,4 @@
-class UF(object):
+class QuickFind(object):
     ids = []
 
     def __init__(self, N):
@@ -21,7 +21,7 @@ class UF(object):
 
 
 if __name__ == '__main__':
-    m = UF(10)
+    m = QuickFind(10)
 
     m.union(6, 5)
     m.union(2, 0)
