@@ -1,10 +1,10 @@
 import quick_union
 
 
-class WQuickUnion(quick_union.QuickUnion):
+class WeightedQuickUnion(quick_union.QuickUnion):
 
     def __init__(self, N):
-        super(WQuickUnion, self).__init__(N)
+        super(WeightedQuickUnion, self).__init__(N)
         self.size = [1 for k in [1]*N]
 
     def union(self, p, q):
@@ -23,7 +23,7 @@ class WQuickUnion(quick_union.QuickUnion):
 
 
 
-m = WQuickUnion(10)
+m = WeightedQuickUnion(10)
 
 m.union(4, 3)
 m.union(3, 8)

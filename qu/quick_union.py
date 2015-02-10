@@ -17,14 +17,10 @@ class QuickUnion(object):
     def union(self, p, q):
         if self.connected(p, q):
             return
+
         i = self.root(p)
         j = self.root(q)
 
-        ''''pid = self.ids[p]
-
-        for (i, k) in enumerate(self.ids):
-            if self.ids[i] == pid:
-                self.ids[i] = self.ids[q]'''
         self.ids[i] = j
 
 
