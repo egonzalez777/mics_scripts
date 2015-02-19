@@ -1,0 +1,6 @@
+#LinkedinAPI
+
+
+-- Quick way to get a user access token from the backend. ---
+
+Scope is not used as a parameter, since this could be determined within the application.
