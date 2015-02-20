@@ -7,24 +7,26 @@ import random
 
 # TODO: Create test cases for all functionality.
 
+
 class LinkedinException(Exception):
     pass
 
 
 class LinkedinAPI(object):
-    """Method sig: (key, secret, redirect, authorization_code(optional))"""
+    """Method sig: (key, secret, redirect)"""
 
     AUTHORIZATION_URL = 'https://www.linkedin.com/uas/oauth2/authorization'
     TOKEN_ACCESS_URL = 'https://www.linkedin.com/uas/oauth2/accessToken'
     client = None
     consumer = None
+    consumer_key = None
+    consumer_secret = None
 
     def __init__(self,
                  consumer_key,
                  consumer_secret,
-                 redirect,
-                 authorization_code=None):
-        """Method sig: (key, secret, redirect, authorization_code(optional))"""
+                 redirect):
+        """Method sig: (key, secret, redirect)"""
 
         self.consumer_key = consumer_key
         self.consumer_secret = consumer_secret
@@ -39,9 +41,8 @@ class LinkedinAPI(object):
     def get_auth_url(self):
         """Generates authorization url."""
 
-        return '%s?%s' % (self.AUTHORIZATION_URL, self.authorization_body)
+        return '%s?%s' % (self.AUTHORIZATION_URL, self.authorization_body())
 
-    @property
     def authorization_body(self):
         """Creates the authorization POST params."""
 
@@ -64,7 +65,6 @@ class LinkedinAPI(object):
                 'client_id': self.consumer_key,
                 'client_secret': self.consumer_secret,
             }
-            print request_params
             resp, content = self.client.request(
                 self.TOKEN_ACCESS_URL,
                 "POST",
@@ -72,9 +72,11 @@ class LinkedinAPI(object):
 
             print resp
             print content
+            print self.authorization_body
         else:
             raise LinkedinException("Missing access code.")
 
     def _generate_random_string(self):
         return hashlib.md5(
-            '%s%s' % (random.randint() ** 20, self.consume_secret)).hexdigest()
+            '%s%s' % (
+                random.uniform(1, 32) ** 32, self.consumer_secret)).hexdigest()

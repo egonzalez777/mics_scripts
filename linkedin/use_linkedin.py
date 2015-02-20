@@ -17,6 +17,7 @@ def main(args):
 
     linkedin = LinkedinAPI(CONSUMER_KEY, CONSUMER_SECRET, redirect_url)
     linkedin.get_access_token(str(args[1]), redirect_url)
+    print linkedin.get_auth_url
 
 
 if __name__ == '__main__':
