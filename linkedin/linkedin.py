@@ -8,6 +8,12 @@ import random
 # TODO: Create test cases for all functionality.
 
 
+API_ROOT = "https://api.linkedin.com/"
+API_VERSION = "v1"
+API_ENDPOINTS = {
+
+}
+
 class LinkedinException(Exception):
     pass
 
